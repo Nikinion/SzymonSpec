@@ -1,0 +1,46 @@
+{extends file="../templates/main.html"}
+
+{block name=footer}przykładowa tresć stopki wpisana do szablonu głównego z szablonu kalkulatora{/block}
+
+{block name=content}
+
+<h3>Liczenie C</h2>
+
+
+<form class="pure-form pure-form-stacked" action="{$app_url}/app/hypotenuse.php" method="post">
+	<fieldset>
+		<label for="a">Podaj wartość a</label>
+		<input id="a" type="text" placeholder="wartość a" name="a" >
+		
+		<label for="b">Podaj wartość b</label>
+		<input id="b" type="text" placeholder="wartość b" name="b" >
+	</fieldset>
+	<button type="submit" class="pure-button pure-button-primary">Oblicz</button>
+</form>
+
+<div class="messages">
+
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if isset($messages)}
+	{if count($messages) > 0} 
+		<h4>Wystąpiły błędy: </h4>
+		<ol class="err">
+		{foreach  $messages as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+
+{if isset($result)}
+	<h4>Wynik</h4>
+	<p class="res">
+	{$result}
+	</p >
+{/if}
+
+</div>
+
+{/block}
